@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>;(</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAIAAgDAREAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAn/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdPV6vQAB//9k=');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #0c5fb3;
+        }
+
+        .win7-window {
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 6px;
+            box-shadow: 
+                0 2px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 2px rgba(255, 255, 255, 0.5),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+            width: 450px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .win7-titlebar {
+            padding: 8px 12px;
+            font-size: 14px;
+            background: linear-gradient(180deg, 
+                rgba(37, 128, 196, 0.95) 0%, 
+                rgba(29, 102, 160, 0.95) 50%, 
+                rgba(21, 82, 133, 0.95) 100%);
+            color: white;
+            border-radius: 6px 6px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .win7-content {
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 0 0 6px 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .win7-buttons button {
+            background: none;
+            border: none;
+            color: white;
+            margin-left: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            padding: 0 5px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 6px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group:last-of-type {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            width: 80px;
+            color: #333;
+            font-size: 13px;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+            flex-shrink: 0;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 6px 10px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            background-color: white;
+            color: #333;
+            border-radius: 3px;
+            box-shadow: 
+                inset 0 1px 3px rgba(0, 0, 0, 0.1),
+                0 1px 0 rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #2580c4;
+            box-shadow: 
+                inset 0 1px 3px rgba(0, 0, 0, 0.1),
+                0 1px 0 rgba(255, 255, 255, 0.5),
+                0 0 5px rgba(37, 128, 196, 0.5);
+        }
+
+        .win7-button {
+            background: linear-gradient(180deg, 
+                rgba(240, 240, 240, 0.9) 0%, 
+                rgba(227, 227, 227, 0.9) 50%, 
+                rgba(211, 211, 211, 0.9) 100%);
+            color: #333;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 8px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            width: 100%;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+        }
+
+        .win7-button:hover {
+            background: linear-gradient(180deg, 
+                rgba(227, 227, 227, 0.9) 0%, 
+                rgba(211, 211, 211, 0.9) 50%, 
+                rgba(195, 195, 195, 0.9) 100%);
+        }
+
+        .profiles {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            padding: 15px;
+        }
+
+        .profile-card {
+            text-align: center;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 110px;
+            box-shadow: 
+                0 2px 6px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        .profile-icon {
+            width: 56px;
+            height: 56px;
+            fill: #2580c4;
+            display: block;
+            margin: 0 auto 8px;
+            filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+        }
+
+        .profile-card h3 {
+            color: #333;
+            margin: 8px 0;
+            font-size: 14px;
+            text-shadow: 0 1px 0 white;
+        }
+
+        .telegram-button {
+            background: none;
+            border: none;
+            padding: 0;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        .telegram-icon {
+            width: 28px;
+            height: 28px;
+            fill: #2580c4;
+            filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+            transition: transform 0.2s ease;
+        }
+
+        .telegram-button:hover .telegram-icon {
+            transform: scale(1.1);
+        }
+
+        #profiles-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container" id="login-container">
+        <div class="win7-window">
+            <div class="win7-titlebar">
+                <span>Windows Security</span>
+                <div class="win7-buttons">
+                    <button class="minimize">-</button>
+                    <button class="maximize">□</button>
+                    <button class="close">×</button>
+                </div>
+            </div>
+            <div class="win7-content">
+                <audio id="bgMusic" src="Nocturne.mp3" preload="auto" loop></audio>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" required autocomplete="off" spellcheck="false">
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" required autocomplete="off">
+                    </div>
+                    <button type="submit" class="win7-button">Log In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="profiles-container" id="profiles-container">
+        <div class="win7-window" style="width: 350px;">
+            <div class="win7-titlebar">
+                <span>Profiles</span>
+                <div class="win7-buttons">
+                    <button class="minimize">-</button>
+                    <button class="maximize">□</button>
+                    <button class="close">×</button>
+                </div>
+            </div>
+            <div class="win7-content profiles">
+                <div class="profile-card">
+                    <svg class="profile-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                    </svg>
+                    <h3>prynce</h3>
+                    <a href="https://t.me/b72824" class="telegram-button" target="_blank">
+                        <svg class="telegram-icon" viewBox="0 0 24 24">
+                            <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="profile-card">
+                    <svg class="profile-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                    </svg>
+                    <h3>kira</h3>
+                    <a href="https://t.me/enlout" class="telegram-button" target="_blank">
+                        <svg class="telegram-icon" viewBox="0 0 24 24">
+                            <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('profiles-container').style.display = 'flex';
+        });
+
+        document.querySelectorAll('.win7-buttons button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('bgMusic');
+
+            // Set initial volume to 50%
+            audio.volume = 0.5;
+
+            // Force autoplay with loop
+            function playAudio() {
+                audio.play().catch(function(error) {
+                    console.log("Retrying autoplay...");
+                    // If autoplay fails, try again on user interaction
+                    document.addEventListener('click', function tryPlay() {
+                        audio.play();
+                        document.removeEventListener('click', tryPlay);
+                    }, { once: true });
+                });
+            }
+
+            // Try to play immediately
+            playAudio();
+        });
+    </script>
+</body>
+</html>
